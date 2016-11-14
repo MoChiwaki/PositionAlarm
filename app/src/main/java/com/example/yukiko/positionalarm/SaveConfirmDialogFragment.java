@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.widget.EditText;
 
 /**
  * データベースへの保存確認のAlertDialogを表示
@@ -12,6 +13,7 @@ import android.os.Bundle;
 public class SaveConfirmDialogFragment extends DialogFragment {
     private static final String ARG_TITLE = "title";
     private static final String ARG_MESSAGE = "message";
+    private EditText editText;
 
     private int mTitle;
     private  String mMessage;
@@ -20,6 +22,7 @@ public class SaveConfirmDialogFragment extends DialogFragment {
         SaveConfirmDialogFragment fragment = new SaveConfirmDialogFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_TITLE, title);
+        args.putString(ARG_MESSAGE, mMessage);
         fragment.setArguments(args);
         return fragment;
     }
@@ -33,12 +36,15 @@ public class SaveConfirmDialogFragment extends DialogFragment {
         return new AlertDialog.Builder(getActivity())
                 .setTitle(mTitle)
                 .setMessage(mMessage)
-                .setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener(){
+                .setView(this.editText)
+                .setPositiveButton(R.string.alert_dialog_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        ((MapsActivity)getActivity()).saveJogViaCTP();
+                        setEditText(editText);
+
+                        ((MapsActivity) getActivity()).saveJogViaCTP(editText.getText().toString());
                     }
                 })
-                .setNegativeButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener(){
+                .setNegativeButton(R.string.alert_dialog_cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
 
                     }
@@ -46,5 +52,8 @@ public class SaveConfirmDialogFragment extends DialogFragment {
                 .create();
     }
 
+    public void setEditText(EditText editText) {
+        this.editText = editText;
+    }
 
 }

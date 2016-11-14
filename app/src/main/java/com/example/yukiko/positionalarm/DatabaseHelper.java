@@ -18,16 +18,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //    public static final String COLUMN_DISTANCE = "distance";
 //    public static final String COLUMN_SPEED = "speed";
     public static final String COLUMN_ADDRESS = "address";
+    public static final String COLUMN_CONTENT = "content";
     private static final String CREATE_TABLE_SQL =
             "create table " + TABLE_MAPRECORD + " "
             + "(" + COLUMN_ID + " integer primary key autoincrement,"
             + COLUMN_DATE + " text not null,"
-//            + COLUMN_ELAPSEDTIME + " text not null,"
-//            + COLUMN_DISTANCE + " real not null,"
-//            + COLUMN_SPEED + "real not null,"
-            + COLUMN_ADDRESS + " text null) ";
-
-    public static final String SELECT_ALL_RECORD = "select * from " + TABLE_MAPRECORD;
+            + COLUMN_ADDRESS + " text null, "
+            + COLUMN_CONTENT + " text default null) ";
 
     public DatabaseHelper(Context context) {
         super(context, DBNAME, null, DBVERSION);
