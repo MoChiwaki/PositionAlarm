@@ -381,6 +381,14 @@ public class MapsActivity extends FragmentActivity
         }
     }
 
+    /**
+     * 1km圏内にいるかをチェック
+     * @param currentLat
+     * @param currentLon
+     * @param lat
+     * @param lon
+     * @return 1km圏内ならtrue
+     */
     private boolean checkOneKilometer(Double currentLat, Double currentLon, Double lat, Double lon) {
 
         double theta = currentLon - lon;
