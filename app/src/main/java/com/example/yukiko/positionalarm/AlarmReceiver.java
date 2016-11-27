@@ -22,8 +22,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, bootIntent, 0);
         Notification.Builder builder = new Notification.Builder(context);
         builder.setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setContentTitle("ここはあの場所…！")
-                .setContentText(receivedIntent.getCharSequenceExtra("todo"))
+                .setContentTitle("いちつーち")
+                .setContentText(receivedIntent.getCharSequenceExtra("content"))
                 .setWhen(System.currentTimeMillis())
                 .setPriority(Notification.PRIORITY_DEFAULT)
                 .setAutoCancel(true)
